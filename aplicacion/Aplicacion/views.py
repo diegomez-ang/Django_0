@@ -1,17 +1,27 @@
 from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.template import loader, Template
 from Aplicacion.models import Curso
 # Create your views here.
 
-def curso(request, nombre, camada):
-    cur = Curso(nombre = nombre, camada = camada)
-    cur.save()
-    plantilla = loader.get_template('curso.html')#carga plantilla
-    contexto = {# crea un contexto
-        'nombre': cur.nombre ,
-        'camada': cur.camada
-    }
-    documento = plantilla.render(contexto) #renderiza
+def inicio(request):
+    return HttpResponse('Vista inicio') 
 
-    return HttpResponse(documento) #retorna el documento
+def cursos(request):
+    contexto = {
+        'cursos':{
+            'curso1': 'Nombre1',
+            'curso2': 'Nombre2',
+            'curso3': 'Nombre3'
+        }
+    }
+    return render(request, 'cursos.html', contexto)
+
+def profesores(request):
+    return render(request, 'profesores.html')
+
+def estudiantes(request):
+    return redirect('AplicacionInicio')
+
+def entregables(request):
+    return HttpResponse('vista entregables') 
