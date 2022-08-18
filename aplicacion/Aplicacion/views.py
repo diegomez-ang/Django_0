@@ -5,7 +5,7 @@ from Aplicacion.models import Curso
 # Create your views here.
 
 def inicio(request):
-    return HttpResponse('Vista inicio') 
+    return render(request,'index.html')
 
 def cursos(request):
     contexto = {
