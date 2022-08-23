@@ -1,0 +1,26 @@
+{% extends 'Appcoder/index.html' %}
+
+{% block title %}Buscar Cursos{% endblock %}
+
+{% block body%}
+
+<form action="" method="post">
+    {% csrf_token %}
+    {{ my_form.as_p }}
+
+    <input type="submit" value="Buscar">
+
+</form>
+
+{% if cursos%}
+    <p>Los cursos son </p>
+    {% for curso in cursos%}
+        <p>{{curso.nombre}}, {{curso.camada}}</p>
+        <br>
+    {% endfor %}
+{% else%}
+    <h6>No existe el curso</h6>
+{% endif%}
+
+{% endblock%}
+
